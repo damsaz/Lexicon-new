@@ -52,6 +52,13 @@ while (cont < max)
                     resultat.Replace('_', inpchar, i, 1);
                     Console.Clear();
                     Console.WriteLine("bra jobbat bokstavet var rätt");
+                    if (String.Equals(sb.ToString(), resultat.ToString()))
+                        {
+                        Console.WriteLine("bra jobbat du har hittat alla bokstäver");
+                        cont = max;
+
+                        }
+
                     flag = false;
 
 
