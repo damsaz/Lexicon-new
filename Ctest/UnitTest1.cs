@@ -1,4 +1,4 @@
-using Calculator;
+
 
 
 namespace Ctest
@@ -28,7 +28,7 @@ namespace Ctest
             calculator cal = new calculator();
             double x = cal.Subtraction(5, 2);
             Assert.Equal(x, 3);
-
+            
             }
         [Fact]
         public void Subtraction_array_test()

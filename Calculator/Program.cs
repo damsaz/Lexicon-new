@@ -1,5 +1,4 @@
-﻿using Calculator;
-
+﻿
 double x, y;
 char opp;
 bool can = true;
