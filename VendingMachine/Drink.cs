@@ -11,9 +11,12 @@ namespace VendingMachine
         public Drink(string name, string description, int pris, bool used, int id) : base(name, description, pris,used, id)
             {
             }
-        public override string Examine()
+        public override string Examine(bool Type)
             {
-            return $"{Id}-Product name {Name} : Price:{Pris} ";
+            if (Type)
+                return $"{Id}-Product name {Name} : Price:{Pris} ";
+            else
+                return $" Product name {Name} \n Description:{Description} ";
             }
         public override void Use()
             {

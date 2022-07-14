@@ -42,10 +42,12 @@ namespace VendingMachine
 
             foreach (var product in Prodocts)
                 {
-                product.Details();
+                product.Details(true);
                
                 }
-            Console.WriteLine("press any key to continue...");
+            Console.WriteLine($"Which product details do you want? Choose from one to {Prodocts.Count}");
+            Key2 = Console.ReadLine();
+            Prodocts[int.Parse(Key2)-1].Details(false);
             Console.ReadKey();
                 }
 
@@ -134,7 +136,7 @@ namespace VendingMachine
             Console.WriteLine("What product are you planning to buy? Enter the product number");
             foreach (var product in Prodocts)
                 {
-                product.Details();
+                product.Details(true);
 
                 }
             int id = int.Parse(Console.ReadLine())-1;

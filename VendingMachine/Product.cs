@@ -16,12 +16,15 @@ namespace VendingMachine
             Used = used;
             Id = id;
             }
-        public virtual string Examine() {
+        public virtual string Examine( bool Type) {
+            if(Type)
             return "";
+            else
+                return "";
             }
         public virtual void Use() { }
-        public virtual void Details() {
-            Console.WriteLine(Examine());
+        public virtual void Details(bool type) {
+            Console.WriteLine(Examine(type));
             }
         public virtual void Add(int number ) { }
        

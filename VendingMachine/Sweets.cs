@@ -15,9 +15,12 @@ namespace VendingMachine
             {
            
             }
-        public override string Examine()
+        public override string Examine(bool Type)
             {
-            return $"{Id}-Product name {Name} : Price:{Pris} ";
+            if (Type)
+                return $"{Id}-Product name {Name} : Price:{Pris} ";
+            else
+                return $"Product name {Name} \nDescription:{Description} ";
             }
         public override void Use()
             {
