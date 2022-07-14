@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
     {
-    internal class Sweets : Product
+    public class Sweets : Product
 
         {
-        private int remaining;
+      
 
         public Sweets(string name, string description, int pris,bool  used, int id) : base(name, description, pris,used,id)
             {
            
             }
-        public override void Examine()
+        public override string Examine()
             {
-
-            Console.WriteLine($"The price of this product is {Pris} SEK ");
-            Console.WriteLine($"Description: {Description} ");
+            return $"{Id}-Product name {Name} : Price:{Pris} ";
             }
         public override void Use()
             {

@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
     {
-    internal  class Chips : Product
+    public  class Chips : Product
         {
         public Chips(string name, string description, int pris, bool used, int id) : base(name, description, pris, used,id)
             {
             Used = false;
             }
-        public override void Examine() {
+        public  override string Examine() {
 
-            Console.WriteLine($"The price of this product is {Pris} SEK ");
-            Console.WriteLine($"Description: {Description} ");
+           return  $"{Id}-Product name {Name} : Price:{Pris} ";
             }
         public override void Use()
             {

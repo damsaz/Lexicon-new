@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
     {
-    internal abstract class Product
+    public abstract class Product
         {
         public Product(string name, string description, int pris, bool used, int id)
             {
@@ -16,12 +16,12 @@ namespace VendingMachine
             Used = used;
             Id = id;
             }
-        public virtual void Examine() {
-           
+        public virtual string Examine() {
+            return "";
             }
         public virtual void Use() { }
         public virtual void Details() {
-            Console.WriteLine($"{Id}-Product name {Name} : Price:{Pris} ");
+            Console.WriteLine(Examine());
             }
         public virtual void Add(int number ) { }
        

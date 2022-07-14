@@ -19,6 +19,9 @@ namespace VendingMachine
 
         public string? Key { get; private set; }
         public int Cointype { get; private set; }
+
+        private bool ok;
+
         public Machine()
             {
              Prodocts = new List<Product>();
@@ -58,51 +61,15 @@ namespace VendingMachine
                 Console.WriteLine("1kr, 5kr,10kr,20kr, 50kr, 100kr, 500kr and 1000kr");
                 Key = Console.ReadLine();
                 Cointype = 0;
+                ok = false;
+                Cointype = keyswitcher(Key, ref ok);
                
-                switch (Key)
-                    {
-                    case "1kr":
-                
-                        Cointype = 1;
-                        break;
-                    case "5kr":
-                       
-                        Cointype = 5;
-                        break;
-                    case "10kr":
-                       
-                        Cointype = 10;
-                        break;
-                    case "20kr":
-                     
-                        Cointype = 20;
-                        break;
-                    case "50kr":
-                       
-                        Cointype = 50;
-                        break;
-                    case "100kr":
-                      
-                        Cointype = 100;
-                        break;
-                    case "500kr":
-                      
-                        Cointype = 500;
-                        break;
-                    case "1000kr":
-                      
-                        Cointype = 1000;
-                        break;
-                    default:
-                        Console.WriteLine("Invalid denomination...");
-                        break;
-                    }
-                if (Cointype != 0)
+                if (ok)
                     {
                     
                     bank.add(Cointype, 1);
                     }
-                Console.WriteLine("Do you want to put more coins in the machine? press y ");
+                Console.WriteLine($"you have {bank.Inventory()}kr. Do you want to put more coins in the machine? press y ");
                 Key2 = Console.ReadLine();
                  Keep = Key2 switch
                     {
@@ -114,6 +81,52 @@ namespace VendingMachine
 
                 } while (Keep);
             }
+
+        public int keyswitcher(string key, ref bool ok)
+            {
+            key=key.ToLower();  
+            switch (Key)
+                {
+                case "1kr":
+                    ok= true;   
+                    return 1;
+                    
+                case "5kr":
+                    ok = true;
+                    return 5;
+                   
+                case "10kr":
+                    ok = true;
+                    return 10;
+                   
+                case "20kr":
+                    ok = true;
+                    return 20;
+                    
+                case "50kr":
+                    ok = true;
+                    return 50;
+                   
+                case "100kr":
+                    ok = true;
+                    return 100;
+                   
+                case "500kr":
+                    ok = true;
+                    return 500;
+                 
+                case "1000kr":
+                    ok = true;
+                    return 1000;
+                    
+                default:
+                    ok = false;
+                    Console.WriteLine("Invalid denomination...");
+                    Console.ReadKey();
+                    return 0;
+                }
+            }
+
         void IVending.Purchase() {
            
             bool ok = false;
@@ -126,7 +139,11 @@ namespace VendingMachine
                 }
             int id = int.Parse(Console.ReadLine())-1;
                     bank.remove(Prodocts[id].Pris,ref ok);
-                    Prodocts[id].Use(); 
+            if (!ok) { 
+                Console.WriteLine("You don't have that much money! Purchase canceled! Enter any key ");
+            Console.ReadKey();
+}
+            Prodocts[id].Use(); 
 
 
 
@@ -143,7 +160,7 @@ namespace VendingMachine
                     _ => false
                     };
             if(Keep)
-                bank.Pay_back_money();
+                bank.Pay_back_money_print();
             }
 
         public void insert() 
